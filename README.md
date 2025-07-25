@@ -7,6 +7,8 @@ how calcium activity propagates through interconnected non-neural supporting cel
 *Drosophila* retina. The analysis workflow includes automated segmentation, signal
 processing, network analysis, and spatial characterization of ommatidial structures.
 
+This codebase is also archived at Zenodo: [![DOI](https://zenodo.org/badge/1025891786.svg)](https://doi.org/10.5281/zenodo.16416573)
+
 ## Pipeline Components
 
 ### 1. ImageJ Macros (`1_imagej_macro/`)
