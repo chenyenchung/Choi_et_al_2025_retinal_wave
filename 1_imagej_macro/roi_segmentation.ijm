@@ -1,0 +1,28 @@
+Dialog.create("Stack for ROI segmentation?");
+Dialog.addMessage("Which slices to use for ROI segmentation?");
+Dialog.addNumber("Start:", "");
+Dialog.addNumber("End:", "");
+Dialog.show();
+sstart = Dialog.getNumber();
+send = Dialog.getNumber();
+zp_arg="start=" + sstart + " stop=" + send + " projection=[Max Intensity]"
+run("Z Project...", zp_arg);
+run("Threshold...");
+setAutoThreshold("Default dark");
+setOption("BlackBackground", true);
+waitForUser("Please adjust the threshold to get the ommatidium outline");
+run("Convert to Mask");
+run("Gaussian Blur...", "sigma=2");
+run("Threshold...");
+setOption("BlackBackground", false);
+setAutoThreshold("Default");
+waitForUser("Please adjust the threshold to remove noise");
+run("Convert to Mask");
+run("Watershed");
+run("Watershed");
+run("Watershed");
+run("Analyze Particles...", "size=10-Infinity clear include add");
+roiManager("multi-measure measure_all");
+saveAs("Results");
+close("Results");
+close("*");

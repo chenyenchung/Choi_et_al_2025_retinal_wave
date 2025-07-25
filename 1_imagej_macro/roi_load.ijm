@@ -1,0 +1,10 @@
+path = File.openDialog("Get coordinate csv");
+Table.open(path);
+xpoints = Table.getColumn("X"); 
+ypoints = Table.getColumn("Y");
+makeSelection("point", xpoints, ypoints);
+run("Enlarge...", "enlarge=15");
+run("Create Mask");
+run("Watershed");
+run("Analyze Particles...", "size=10-Infinity clear include add");
+close("Mask");
